@@ -1,0 +1,4 @@
+node_modules/
+api_token.txt
+domains.json
+.idea
