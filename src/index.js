@@ -4,9 +4,35 @@ const CloudFlareApi = require("./CloudFlareApi.js")
 const TOKEN_FILE = "auth.json"
 const DOMAIN_FILE = "domains.json"
 
+//file check
+let fileExist = true
+if(! fs.existsSync(TOKEN_FILE)){
+    let default_auth = {
+        api_token: "",
+        api_key: "",
+        email: ""
+    }
+    fs.writeFileSync(TOKEN_FILE, JSON.stringify(default_auth))
+    fileExist = false;
+}
+if(! fs.existsSync(DOMAIN_FILE)){
+    let default_domains = {
+        zones: [],
+        subdomains: {
+            A: []
+        }
+    }
+    fs.writeFileSync(DOMAIN_FILE, JSON.stringify(default_domains))
+    fileExist = false;
+}
+if(!fileExist){
+    console.log("Please rerun after modifying auth.json and domain.json")
+    process.exit(0)
+    return
+}
+
 let auth_info = JSON.parse(fs.readFileSync(TOKEN_FILE).toString());
 let domains = JSON.parse(fs.readFileSync(DOMAIN_FILE).toString());
-//TODO: 파일이 없을 시 파일 자동 생성하도록.
 
 let api = new CloudFlareApi(auth_info.api_token, auth_info.api_key, auth_info.email);
 api.validate().then(result => {
