@@ -1,6 +1,6 @@
 {
   "name": "recorder",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "DNS Record Updater for devices that are dynamically assigned ip via dhcp server",
   "main": "src/index.js",
   "scripts": {
