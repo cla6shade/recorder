@@ -26,7 +26,13 @@ Multiple zones can be accepted as an array.
 5. Put your subdomain as full form into the value of "subdomains > A" in domains.json
 
 The Examples of setting files are here
+
+### auth.json
+
 ![img](setting_image/authjson.png)
+
+### domains.json
+
 ![img](setting_image/domainjson.png)
 
 # TODO
